@@ -1,7 +1,7 @@
 /*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
 
 html {
-    color: #222;
+    color: white;
     font-size: 1em;
     line-height: 1.4;
 }
@@ -56,82 +56,17 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-body {
-    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    background: #ccc;
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-}
 
 
-#container {
-    width: 85%;
-    margin: 10px auto;
-    overflow: auto;
-    border-radius: 10px;
-    background: white;
-}
-
-header#main {
-    padding: 10px;
-    background: #f4f4f4;
-}
-
-nav {
-    height: 40px;
-    background: #aaa;
-    overflow: hidden;
-}
-
-nav li {
-    float: left;
-    padding: 10px 10px 0 10px;
-    display: inline;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: black;
-}
 
 
-main {
-    padding: 20px;
 
-}
 
-section#main {
-    position: relative;
-    width: 70%;
-    float: left;
-}
 
-aside {
-    width: 20%;
-    float: right;
-}
 
-footer {
-    padding: 10px;
-    text-align: center;
-}
 
-#holder {
-    position: absolute;
-    top: 10px;
-    left: 320px;
-    font-size: 35px;
-    width: 260px;
-}
+
+
 
 
 
@@ -139,19 +74,8 @@ footer {
    Media Queries
    ========================================================================== */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 35em) {
 
-    section#main {
-        width: 100%;
-        float: none;
-        text-align: center;
-    }
-
-    aside {
-        width: 100%;
-        float: none;
-        text-align: center;
-    }
 }
 
 @media print,
