@@ -128,7 +128,9 @@ footer {
 #holder {
     position: absolute;
     top: 10px;
-    left: 300px;
+    left: 320px;
+    font-size: 35px;
+    width: 260px;
 }
 
 
