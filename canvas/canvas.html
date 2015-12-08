@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Canvas</title>
+    <style>
+        canvas {
+            border: #000000 1px solid;
+        }
+    </style>
+
+    <script>
+
+        var c
+        var ctx;
+
+        function init() {
+
+            c = document.getElementById('mycanvas');
+            ctx = c.getContext('2d');
+            draw();
+
+        }
+
+        function draw() {
+            ctx.fillStyle='red';
+            ctx.fillRect(30,30,50,50);
+        }
+    </script>
+</head>
+<body onload="init()">
+
+<canvas id="mycanvas" width="400px" height="150px">
+    <p>Sorry your browser doesn't use the canvas feature!</p>
+
+</canvas>
+
+
+
+</body>
+</html>
