@@ -27,13 +27,27 @@ $(document).ready(function() {
 
     }
 
-    init();
+    init(); //run initializer
+
+    //snake create
 
     function create_snake() {
         var lenght = 5;
         snake_array = [];
 
-        for(var i = lenght-1;1i)
+        for(var i = lenght-1;i >= 0;i ==) {
+            snake_array.push({x: i,y:0});
+        }
+    }
+
+    //create food
+
+    function create_food() {
+        food = {
+            x:Math.round(Math.random()*(w-cw)/cw),
+            y:Math.round(Math.random()*(h-cw)/cw),
+        }
+    }
 
 
 });
