@@ -45,6 +45,7 @@ $(document).ready(function(){
         };
     }
 
+
     //Paint Snake
     function paint(){
         //Paint The Canvas
