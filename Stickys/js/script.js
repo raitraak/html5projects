@@ -139,4 +139,58 @@ Note.prototype = {
         this.note.style.zIndex = x;
 
     },
+
+    close: function(e) {
+        this.cancelPendingSave();
+        var note = this;
+        db.transaction(function(tx) {
+            tx.executeSql('DELETE FROM MySickys WHERE id = ?', [note.id]);
+
+        });
+
+        document.body.removeChild(this.note);
+
+    },
+
+    saveSoon: function() {
+        this.cancelPendingSave();
+        var self = this;
+        this._saveTimer = setTimeout(function(){
+
+            self.save();
+        },200);
+    },
+
+    cancelPendingSave: function() {
+        if(!('_saveTimer' in this)) {
+            return;
+        }
+
+        clearTimeout(this._saveTimer);
+        delete this._saveTimer;
+    },
+        save: function() {
+            this.cancelPendingSave();
+            if('dirty' in this) {
+                this.timestamp = new Date().getTime();
+                delete this.dirty;
+            }
+
+            var note this;
+            db.transaction(function(tx) {
+
+                tx.executeSql('Update MyStickys SET note = ?,TIMESTAMP = ?, left = ?, top = ?, zIndex = ? WHERE id = ?',[note.text,note.timestamp,note.left,note.top, note.zIndex,note.id]);
+            });
+        },
+
+        saveAsNew = function() {
+            this.timestamp = new Date.getTime();
+
+            var note = this;
+            db.transaction(function(tx) {
+                tx.executeSql("INSERT INTO Mystickys (id, note, timestamp, left, top, zindex)");
+
+            });
+        }
+
 }
