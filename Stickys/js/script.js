@@ -12,6 +12,10 @@ if(window.openDatabase) {
 
 }
 
+var captured = null;
+var highestZ = 0;
+var highestId = 0;
+
 function Note() {
     var self = this;
 
@@ -183,14 +187,69 @@ Note.prototype = {
             });
         },
 
-        saveAsNew = function() {
+        saveAsNew: function() {
             this.timestamp = new Date.getTime();
 
             var note = this;
             db.transaction(function(tx) {
-                tx.executeSql("INSERT INTO Mystickys (id, note, timestamp, left, top, zindex)");
+                tx.executeSql("INSERT INTO Mystickys (id, note, timestamp, left, top, zindex) VALUES (?, ?, ?, ?, ?, ?)", [note.id, note.text, note.timestamp, note.left, note.top, note.zindex]);
+
 
             });
-        }
+        },
+
+            onMouseDown: function(e) {
+
+        capture = this;
+        this.startX = e.clientX - this.note.offsetLeft;
+        this.startY = e.clientY - this.note.offsetRight;
+        this.zindex = ++highestZ;
+
+    var self = this;
+
+    if(!('mouseMoveHandler' in this)) {
+        this.mouseMoveHandler = function(e) {return self.onMouseMove (e)}
+        this.upMouseHandler = function(e) {return self.onMouseUp(e)}
+    }
+
+    document.addEventListener('mousemove', this.mousemovehandler, true);
+    document.addEventListener('mouseup', this.mouseUphandler, true);
+
+},
+
+onMouseMove: function(e) {}
+
+if(this != captured) {
+    return true;
+}
+
+this.left = e.clientX - this.startX + 'px';
+this.top = e.clientY - this.startY + 'px';
+return false;
+
+}
+
+onMouseUp: function(e) {
+    document.removeEventListener('mousemove',this.mouseOverHandler, true);
+    document.removeEventListener('mouseUp',this.mouseUpHandler, true);
+
+    this.save();
+    return false;
+}
+
+onNoteClick: function(e) {
+
+    this.editField.focus();
+    getSelection().collapseToEnd();
+
+},
+
+onKeyUp() {
+    this.dirty = true;
+    this.saveSoon();
+
+
+
+    }
 
 }
