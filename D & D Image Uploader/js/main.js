@@ -11,6 +11,7 @@ $(function(){
         uploadFinished: function(i,file,response){
             $.data(file).addClass('done');
             $('.uploaded').show();
+
         },
         error: function(err, file){
             switch(err){
