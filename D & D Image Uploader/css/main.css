@@ -79,12 +79,12 @@ header h1{
 	box-shadow: 0 0 2px #000;
 }
 
-#picbox .progress{
+#picbox .progress {
 	background:#2586d0;
 	position:absolute;
 	height:100%;
+	width: 0;
 	left:0;
-	width:0;
 	box-shadow: 0 0 1px rgba(255, 255, 255, 0.4) inset;
 	
 	-moz-transition:0.25s;
