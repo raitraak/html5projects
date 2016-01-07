@@ -1,13 +1,11 @@
-var score = 0;
-var total = 5;
-var point = 1;
+var score = 0; //Set score to 0
+var total = 5; //Total number of questions
+var point = 2; //Points per correct answer
 var highest = total * point;
 
-//initializer
-
-function init() {
-
-    //correct answers
+//Initializer
+function init(){
+    //set correct answers
     sessionStorage.setItem('a1','b');
     sessionStorage.setItem('a2','d');
     sessionStorage.setItem('a3','c');
@@ -15,77 +13,44 @@ function init() {
     sessionStorage.setItem('a5','b');
 }
 
-
-$(document).ready(function() {
+$(document).ready(function(){
+    //Hide all questions
     $('.questionForm').hide();
 
+    //Show first question
     $('#q1').show();
 
-    $('.questionForm #submit').click(function() {
-        //Get Data ATR
-        var current = $(this).parents('form:first').data('question');
-        var next = $(this).parents('form:first').data('question')+1;
-
-        //Hide Q
+    $('.questionForm #submit').click(function(){
+        //Get data attributes
+        current = $(this).parents('form:first').data('question');
+        next = $(this).parents('form:first').data('question')+1;
+        //Hide all questions
         $('.questionForm').hide();
-
-        //SHow Next Questions
-
+        //Show next question
         $('#q'+next+'').fadeIn(300);
         process(''+current+'');
         return false;
-
-
     });
-
 });
 
-//Process ANW
-
-function process(n) {
-
-
-
+//Process the answers
+function process(n){
+    //Get input value
+    var submitted = $('input[name=q'+n+']:checked').val();
+    if(submitted == sessionStorage.getItem('a'+n+'')){
+        score = score + point;
     }
 
-
-
-
-
-    if(q=='q2') {
-        var submitted = $('input[name=q2]:checked').val();
-        if(submitted==sessionStorage.a2) {
-            score++;
+    if(n == total){
+        $('#results').html('<h3>Your final score is: '+score+' out of '+highest+'</h3><a href="index.html">Take Quiz Again</a>');
+        if(score == highest){
+            $('#results').append('<p>You are an HTML5 master!');
+        } else if(score == highest - point || score == highest - point - point){
+            $('#results').append('<p>Good Job!');
         }
-    }
-
-    if(q=='q3') {
-        var submitted = $('input[name=q3]:checked').val();
-        if(submitted==sessionStorage.a3) {
-            score++;
-        }
-    }
-
-    if(q=='q4') {
-        var submitted = $('input[name=q4]:checked').val();
-        if(submitted==sessionStorage.a4) {
-            score++;
-        }
-    }
-
-    if(q=='q5') {
-        var submitted = $('input[name=q5]:checked').val();
-        if(submitted==sessionStorage.a5) {
-            score++;
-        }
-
-        $('#results').html('<h3>Your Final Score Is: '+score+' out of 5</h3><a href="index.html">Take Quiz Again</a>');
     }
     return false;
 }
 
-
-
 //Add event listener
-
-window.addEventListener('load',init,false)
+window.addEventListener('load',init,false);
