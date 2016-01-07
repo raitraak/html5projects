@@ -21,58 +21,36 @@ $(document).ready(function() {
 
     $('#q1').show();
 
-    $('#q1 #submit').click(function() {
+    $('.questionForm #submit').click(function() {
+        //Get Data ATR
+        var current = $(this).parents('form:first').data('question');
+        var next = $(this).parents('form:first').data('question')+1;
 
+        //Hide Q
         $('.questionForm').hide();
-        process('q1');
-        $('#q2').fadeIn(300);
+
+        //SHow Next Questions
+
+        $('#q'+next+'').fadeIn(300);
+        process(''+current+'');
         return false;
+
+
     });
-
-    $('#q2 #submit').click(function() {
-
-        $('.questionForm').hide();
-        process('q2');
-        $('#q3').fadeIn(300);
-        return false;
-    });
-
-    $('#q3 #submit').click(function() {
-
-        $('.questionForm').hide();
-        process('q3');
-        $('#q4').fadeIn(300);
-        return false;
-    });
-
-    $('#q4 #submit').click(function() {
-
-        $('.questionForm').hide();
-        process('q4');
-        $('#q5').fadeIn(300);
-        return false;
-    });
-
-    $('#q5 #submit').click(function() {
-
-        $('.questionForm').hide();
-        process('q5');
-        $('#results').fadeIn(300);
-        return false;
-    });
-
 
 });
 
 //Process ANW
 
-function process(q) {
-    if(q=='q1') {
-        var submitted = $('input[name=q1]:checked').val();
-        if(submitted==sessionStorage.a1) {
-            score++;
-        }
+function process(n) {
+
+
+
     }
+
+
+
+
 
     if(q=='q2') {
         var submitted = $('input[name=q2]:checked').val();
