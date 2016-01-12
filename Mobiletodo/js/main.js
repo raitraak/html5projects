@@ -41,4 +41,37 @@ $(document).ready(function(){
             localStorage.setItem('todos',JSON.stringify(todos));
         }
     });
+
+    //Delete Todo
+    $('#edit_form').on('click','#delete',function(){
+        currentTodoName = localStorage.getItem('currentTodoName');
+        currentTodoDate = localStorage.getItem('currentTodoDate');
+        //Loop through todos
+        for(var i=0; i < todoList.length; i++){
+            if(todoList[i].todo_name == currentTodoName){
+                todoList.splice(i,1);
+            }
+            localStorage.setItem('todos',JSON.stringify(todoList));
+        }
+
+    $('#todos').on('click','#todo_link',function(){
+        localStorage.setItem('currentTodoName',$(this).data('todo_name'));
+        localStorage.setItem('currentTodoDate',$(this).data('todo_date'));
+    });
+
+    $(document).on('pageshow','#edit',function(){
+        currentTodoName = localStorage.getItem('currentTodoName');
+        currentTodoDate = localStorage.getItem('currentTodoDate');
+    });
+
+    $(document).on('pageshow','#home',function(){
+        window.location.reload();
+    });
+
+    //Clear Todos
+    $('#clear_btn').click(function(){
+        localStorage.clear();
+    });
+
+
 });
