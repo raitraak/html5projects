@@ -94,3 +94,7 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.danger{color:red;}
+.cursor{cursor:pointer}
+span.customer{padding:8px 20px}
